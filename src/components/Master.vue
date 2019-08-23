@@ -127,7 +127,7 @@ export default {
 
         // fake looping by sending multiple 'loops'
         for (let i = 0; i < this.loops; i++) {
-          this.tracks.melody.notes.map(note => {
+          this.tracks.melody.notes.forEach(note => {
             output.playNote(note.name, MICROFREAK_MIDI_CHANNEL, {
               duration: note.duration * STEP_DURATION_MS,
               time: `+${MELODYSTEPS * i * STEP_DURATION_MS +
@@ -135,8 +135,8 @@ export default {
             });
           });
 
-          this.tracks.drums.tracks.map(track => {
-            track.steps.map((step, stepIndex) => {
+          this.tracks.drums.tracks.forEach(track => {
+            track.steps.forEach((step, stepIndex) => {
               output.playNote(
                 bruteMap[track.instrument].note,
                 DRUMBRUTE_MIDI_CHANNEL,
